@@ -15,15 +15,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://zoha-khan123.github.io',
+  url: 'https://imarifluqman.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/Physical-AI-Humanoid-Robotics/',
+  baseUrl: '/Physical-AI-Humanoid-Robotics-Textbook/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'zoha-khan123', // Usually your GitHub org/user name.
-  projectName: 'Physical-AI-Humanoid-Robotics', // Usually your repo name.
+  organizationName: 'imarifluqman', // Usually your GitHub org/user name.
+  projectName: 'Physical-AI-Humanoid-Robotics-Textbook', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -44,7 +44,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/Zoha-Khan123/Physical-AI-Humanoid-Robotics/tree/main',
+            'https://github.com/imarifluqman/Physical-AI-Humanoid-Robotics-Textbook/tree/master',
         },
          blog: false, // Disable blog for textbook
         theme: {
@@ -75,7 +75,7 @@ const config: Config = {
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/Zoha-Khan123/Physical-AI-Humanoid-Robotics',
+          href: 'https://github.com/imarifluqman/Physical-AI-Humanoid-Robotics-Textbook',
           label: 'GitHub',
           position: 'right',
         },
@@ -98,15 +98,15 @@ const config: Config = {
           items: [
             {
               label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://stackoverflow.com/questions/tagged/imarifluqman',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discordapp.com/invite/imarifluqman',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/imarifluqman',
             },
           ],
         },
@@ -119,7 +119,7 @@ const config: Config = {
             // },
             {
               label: 'GitHub',
-              href: 'https://github.com/Zoha-Khan123/Physical-AI-Humanoid-Robotics',
+              href: 'https://github.com/imarifluqman/Physical-AI-Humanoid-Robotics-Textbook',
             },
           ],
         },
