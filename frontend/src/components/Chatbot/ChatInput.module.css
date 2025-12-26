@@ -1,0 +1,75 @@
+.chatInputForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.inputContainer {
+  display: flex;
+  border: 1px solid var(--ifm-card-border-color);
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: var(--ifm-card-background-color);
+  color: var(--ifm-text-color);
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.textInput {
+  flex: 1;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+  min-height: 40px;
+  max-height: 120px;
+  overflow-y: auto;
+  background-color: var(--ifm-card-background-color);
+  color: var(--ifm-text-color);
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.textInput:disabled {
+  background-color: var(--ifm-background-surface-color);
+  cursor: not-allowed;
+  color: var(--ifm-text-color);
+}
+
+.submitButton {
+  border: none;
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-text-color-inverse);
+  padding: 0 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+}
+
+.submitButton:disabled {
+  background-color: var(--ifm-background-surface-color);
+  cursor: not-allowed;
+  color: var(--ifm-text-color);
+}
+
+.loadingSpinner {
+  font-size: 0.8rem;
+}
+
+.submitIcon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .textInput {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .submitButton {
+    padding: 0 0.75rem;
+  }
+}

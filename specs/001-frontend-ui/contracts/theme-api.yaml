@@ -1,0 +1,85 @@
+# Theme Switching API Contract
+
+## Overview
+This contract defines the interface for theme switching functionality in the Physical AI & Humanoid Robotics book website.
+
+## Endpoints
+
+### GET /api/theme/current
+**Description**: Get the currently active theme
+
+**Response**:
+```
+Status: 200 OK
+{
+  "theme": "light" | "dark",
+  "timestamp": "ISO 8601 datetime"
+}
+```
+
+### POST /api/theme/switch
+**Description**: Switch the active theme
+
+**Request**:
+```
+{
+  "theme": "light" | "dark"
+}
+```
+
+**Response**:
+```
+Status: 200 OK
+{
+  "success": true,
+  "newTheme": "light" | "dark",
+  "message": "Theme switched successfully"
+}
+```
+
+**Error Response**:
+```
+Status: 400 Bad Request
+{
+  "success": false,
+  "error": "Invalid theme specified"
+}
+```
+
+### GET /api/theme/preferences
+**Description**: Get user's theme preferences
+
+**Response**:
+```
+Status: 200 OK
+{
+  "theme": "light" | "dark",
+  "autoSwitch": boolean,
+  "lastUpdated": "ISO 8601 datetime"
+}
+```
+
+### POST /api/theme/preferences
+**Description**: Set user's theme preferences
+
+**Request**:
+```
+{
+  "theme": "light" | "dark",
+  "autoSwitch": boolean (optional)
+}
+```
+
+**Response**:
+```
+Status: 200 OK
+{
+  "success": true,
+  "message": "Preferences updated successfully"
+}
+```
+
+## Implementation Notes
+- Theme preferences should be stored in localStorage for client-side persistence
+- Theme switching should apply CSS classes to the document body
+- The API endpoints represent the functional interface; implementation may be client-side only

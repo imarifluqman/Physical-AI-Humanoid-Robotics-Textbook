@@ -1,0 +1,67 @@
+# API Contract: Contextual AI Assistant Text Selection
+
+## Overview
+This document defines the contract between the text selection feature and the existing chatbot component.
+
+## Component Interface
+
+### Chatbot Input Injection
+- **Method**: `setInputValue(text: string)`
+- **Purpose**: Inject selected text into the chatbot input field
+- **Parameters**:
+  - `text` (string): The selected text to inject
+- **Return**: void
+- **Behavior**: Sets the input field value without clearing existing conversation history
+
+### Chatbot Open Action
+- **Method**: `openChatbot()`
+- **Purpose**: Open the chatbot interface if not already open
+- **Parameters**: None
+- **Return**: void
+- **Behavior**: Ensures chatbot is visible and focused
+
+## Event Contracts
+
+### Text Selection Event
+- **Event**: `textSelected`
+- **Payload**:
+  - `selectedText` (string): The text that was selected
+  - `position` (object): Coordinates for button positioning {x, y}
+- **Trigger**: When user completes a text selection
+- **Handler**: SelectionActionButton component
+
+### Button Click Event
+- **Event**: `aiButtonClicked`
+- **Payload**:
+  - `selectedText` (string): The text to be injected
+- **Trigger**: When user clicks the contextual AI button
+- **Handler**: Chatbot integration logic
+
+## State Management Contract
+
+### Selection State
+- **Properties**:
+  - `isActive` (boolean): Whether text is currently selected
+  - `textContent` (string): The currently selected text
+  - `position` (object): Where to display the AI button
+- **Mutations**: Only updated through selection detection logic
+- **Access**: Readable by UI components, writable only by selection handler
+
+## Error Handling Contract
+
+### Graceful Degradation
+- If chatbot component is unavailable, button click should show user-friendly error
+- If selection is invalid (empty/whitespace), no button should appear
+- If positioning fails, button should default to safe position
+
+## Accessibility Contract
+
+### Keyboard Navigation
+- Button must be focusable via Tab key
+- Button must be activatable via Enter/Space keys
+- Focus must be managed appropriately when chatbot opens
+
+### Screen Reader Support
+- Button must have appropriate ARIA labels
+- Selection detection should not interfere with screen reader navigation
+- Text injection should be announced appropriately to screen readers

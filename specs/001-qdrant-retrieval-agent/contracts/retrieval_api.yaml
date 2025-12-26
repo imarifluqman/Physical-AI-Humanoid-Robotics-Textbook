@@ -1,0 +1,225 @@
+openapi: 3.0.0
+info:
+  title: Qdrant Retrieval Agent API
+  description: API for querying Physical AI & Humanoid Robotics book content using AI-powered semantic search
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://api.example.com
+    description: Production server
+paths:
+  /api/v1/query:
+    post:
+      summary: Submit a natural language query about book content
+      description: Submit a query to retrieve relevant book content using AI-powered semantic search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Successfully retrieved relevant content and generated response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '400':
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - Retrieval
+      security:
+        - bearerAuth: []
+
+  /api/v1/health:
+    get:
+      summary: Check API health status
+      description: Returns the health status of the retrieval agent service
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+      tags:
+        - Health
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The natural language query about book content
+          example: "What are the key principles of humanoid locomotion?"
+          minLength: 1
+          maxLength: 1000
+        user_id:
+          type: string
+          description: Optional user identifier
+          example: "user-12345"
+          pattern: "^[a-zA-Z0-9-_]+$"
+        context:
+          type: string
+          description: Additional context for the query
+          example: "I'm studying for my robotics exam"
+          maxLength: 500
+
+    QueryResponse:
+      type: object
+      required:
+        - response_id
+        - answer
+        - retrieved_content
+        - timestamp
+      properties:
+        response_id:
+          type: string
+          description: Unique identifier for this response
+          example: "resp-67890"
+        query:
+          type: string
+          description: The original query that was submitted
+          example: "What are the key principles of humanoid locomotion?"
+        answer:
+          type: string
+          description: AI-generated answer based on retrieved content
+          example: "The key principles of humanoid locomotion include dynamic balance control, bipedal gait patterns, and compliant joint actuation..."
+        retrieved_content:
+          type: array
+          description: List of content snippets used to generate the answer
+          items:
+            $ref: '#/components/schemas/RetrievedContent'
+        confidence:
+          type: number
+          format: float
+          description: Confidence score of the response (0.0-1.0)
+          example: 0.85
+          minimum: 0.0
+          maximum: 1.0
+        source_modules:
+          type: array
+          description: List of modules referenced in the response
+          items:
+            type: string
+          example: ["module3", "module4"]
+        timestamp:
+          type: string
+          format: date-time
+          description: When the response was generated
+          example: "2025-12-18T10:30:00Z"
+
+    RetrievedContent:
+      type: object
+      required:
+        - content_id
+        - text_content
+        - module
+        - chapter
+        - similarity_score
+      properties:
+        content_id:
+          type: string
+          description: Unique identifier for the content snippet
+          example: "content-abc123"
+        text_content:
+          type: string
+          description: The actual text content retrieved
+          example: "Humanoid locomotion requires dynamic balance control through feedback systems..."
+        module:
+          type: string
+          description: Module identifier
+          example: "module3"
+        chapter:
+          type: string
+          description: Chapter identifier
+          example: "chapter5"
+        section:
+          type: string
+          description: Section name within the chapter
+          example: "balance_control_principles"
+        similarity_score:
+          type: number
+          format: float
+          description: Similarity score from vector search (0.0-1.0)
+          example: 0.92
+          minimum: 0.0
+          maximum: 1.0
+        metadata:
+          type: object
+          description: Additional metadata associated with the content
+          example:
+            page_number: 145
+            keywords: ["balance", "locomotion", "feedback"]
+
+    ErrorResponse:
+      type: object
+      required:
+        - error_code
+        - message
+      properties:
+        error_code:
+          type: string
+          description: Error code
+          example: "QUERY_TOO_LONG"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Query exceeds maximum length of 1000 characters"
+        details:
+          type: object
+          description: Additional error details
+          example:
+            field: "query"
+            max_length: 1000
+
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum: [healthy, unhealthy]
+          description: Health status of the service
+          example: "healthy"
+        timestamp:
+          type: string
+          format: date-time
+          description: When the health check was performed
+          example: "2025-12-18T10:30:00Z"
+        details:
+          type: object
+          description: Additional health details
+          example:
+            qdrant_connected: true
+            agent_available: true

@@ -1,0 +1,106 @@
+/* Contextual AI Assistant Button Styles */
+
+.contextual-ai-button {
+  position: fixed;
+  z-index: 99999 !important; /* Highest possible z-index to ensure visibility */
+  background-color: var(--ifm-color-primary, #1a73e8);
+  color: var(--ifm-color-white, white);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  font-size: 16px;
+  font-weight: bold;
+  user-select: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  /* Accessibility: Ensure sufficient contrast and touch target size */
+  min-width: 44px;
+  min-height: 44px;
+  pointer-events: auto; /* Ensure button receives click events */
+}
+
+.contextual-ai-button.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+.contextual-ai-button:hover {
+  background-color: var(--ifm-color-primary-dark, #0d62c9);
+  transform: scale(1.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.contextual-ai-button:focus {
+  outline: 2px solid var(--ifm-color-primary, #4285f4);
+  outline-offset: 2px;
+  /* Ensure focus is visible for keyboard navigation */
+  outline-style: auto;
+}
+
+.contextual-ai-button:active {
+  transform: scale(0.95);
+}
+
+.contextual-ai-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure button doesn't block text visibility */
+.contextual-ai-button.no-text-block {
+  position: fixed;
+  top: auto !important;
+  left: auto !important;
+}
+
+/* Smooth appearance/disappearance transitions */
+.contextual-ai-button.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+.contextual-ai-button.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Accessibility: Visual focus indicator for accessibility */
+.contextual-ai-button:focus-visible {
+  outline: 2px solid var(--ifm-color-primary, #4285f4);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .contextual-ai-button {
+    border: 2px solid #000;
+  }
+
+  .contextual-ai-button:focus {
+    outline: 3px solid #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .contextual-ai-button {
+    transition: none;
+  }
+
+  .contextual-ai-button:hover,
+  .contextual-ai-button:active {
+    transform: none;
+  }
+}

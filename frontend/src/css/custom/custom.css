@@ -1,0 +1,113 @@
+/**
+ * Custom theme CSS for Physical AI & Humanoid Robotics Book
+ * Contains light and dark theme variables and base styling
+ */
+
+/* Light theme variables */
+:root,
+[data-theme='light'] {
+  --ifm-color-primary: #412478;
+  --ifm-color-primary-dark: #3a206b;
+  --ifm-color-primary-darker: #361e65;
+  --ifm-color-primary-darkest: #2c1852;
+  --ifm-color-primary-light: #482885;
+  --ifm-color-primary-lighter: #4c2a8b;
+  --ifm-color-primary-lightest: #552ea8;
+  --ifm-background-color: #eddef1;
+  --ifm-background-surface-color: #f8f5f9;
+  --ifm-text-color: #242526;
+  --ifm-text-color-inverse: #ffffff;
+  --ifm-heading-color: #412478;
+  --ifm-navbar-background-color: #412478;
+   --ifm-navbar-link-color: #ffffff;          /* Normal state → purple */
+  --ifm-navbar-link-hover-color: #eddef1;
+  --ifm-footer-background-color: #412478; /* Dark purple background for light theme footer */
+  --ifm-footer-color: #ffffff; /* White text for light theme footer */
+  --ifm-card-background-color: #ffffff;
+  --ifm-card-border-color: #e0d0e5;
+  --ifm-footer-title-color: #ffffff;
+--ifm-footer-link-color: #ffffff;
+--ifm-footer-link-hover-color: #bdbaba;
+
+
+
+}
+@media (max-width: 768px) {
+  /* Menu links text */
+  .menu__link {
+    color: #ffffff !important;
+  }
+
+  .menu__link--active {
+    color: #ffffff !important;
+  }
+
+  /* Back to main menu button */
+  .menu__back-button {
+    color: #ffffff !important;
+  }
+
+  /* Module arrows + chevrons */
+  .menu__link svg,
+  .menu__back-button svg {
+    fill: #ffffff !important; /* Force white icon */
+  }
+
+  /* Optional: light theme specific */
+  [data-theme='light'] .menu__link svg,
+  [data-theme='light'] .menu__back-button svg {
+    fill: #ffffff !important;
+  }
+}
+
+
+
+/* Dark theme variables */
+[data-theme='dark'] {
+  --ifm-color-primary: #eb4a4a;
+  --ifm-color-primary-dark: #e83838;
+  --ifm-color-primary-darker: #e52c2c;
+  --ifm-color-primary-darkest: #d11e1e;
+  --ifm-color-primary-light: #ec5c5c;
+  --ifm-color-primary-lighter: #ed6e6e;
+  --ifm-color-primary-lightest: #f09292;
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #1a1a1a;
+  --ifm-text-color: #e4e5e6;
+  --ifm-text-color-inverse: #ffffff;
+  --ifm-heading-color: #eb4a4a;
+  --ifm-navbar-background-color: #1a1a1a; /* Dark background for professional look */
+  --ifm-navbar-link-color: #e4e5e6; /* Light gray text for better readability */
+  --ifm-navbar-link-hover-color: #eb4a4a; /* Red hover for consistency */
+  --ifm-footer-background-color: #1a1a1a; /* Darker footer for better contrast */
+  --ifm-footer-color: #ffffff; /* White text for better contrast */
+  --ifm-card-background-color: #1a1a1a;
+  --ifm-card-border-color: #333333;
+  --ifm-footer-link-color: #e4e5e6;
+  --ifm-footer-link-hover-color: #eb4a4a;
+  --ifm-sidebar-background-color: #1a1a1a; /* Dark background for sidebar */
+  --ifm-sidebar-text-color: #e4e5e6; /* Light text for sidebar */
+  --ifm-sidebar-item-color: #e4e5e6; /* Light color for sidebar items */
+  --ifm-sidebar-item-hover-background-color: #2a2a2a; /* Hover background */
+  --ifm-sidebar-item-hover-color: #eb4a4a; /* Hover text color */
+}
+
+/* Base Josefin Sans font import */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap');
+
+/* Import animations */
+@import './animations.css';
+
+
+/* Apply Josefin Sans to all elements */
+* {
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+
+footer{
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ifm-footer-background-color);
+}
